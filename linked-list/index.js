@@ -1,4 +1,6 @@
 import Node from './node'
+import reorderList from './problems/reorder-list'
+import reverseBetween from './problems/reverse-between'
 
 class LinkedList {
 
@@ -118,15 +120,36 @@ class LinkedList {
         }
     }
 
-    printListData () {
-        if (!this.head) return null
+    removeNode (data) {
 
+        /* Removing the first node */
+        if (this.head.data === data) {
+            this.head = this.head.next
+            return
+        }
+
+        let prev = null
         let current = this.head
 
-        while(current) {
-            console.log(current.data)
+        while (current) {
+            if (current.data === data) {
+                prev.next = current.next
+            }
+            prev = current
             current = current.next
         }
+    }
+
+    printListData () {
+        this.head = reverseBetween(this.head, 1, 2)
+        // if (!this.head) return null
+        //
+        // let current = this.head
+        //
+        // while(current) {
+        //     console.log(current.data)
+        //     current = current.next
+        // }
     }
 }
 
